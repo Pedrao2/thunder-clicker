@@ -1,0 +1,70 @@
+if game:GetService("CoreGui"):FindFirstChild("FluxLib") then
+    game:GetService("CoreGui"):FindFirstChild("FluxLib"):Destroy()
+end
+local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/LuciferNzqxz/BAMBYZ/main/LxifLib")()
+local win = Flux:Window("Thunder Clickers", "", Color3.fromRGB(255,0,0), Enum.KeyCode.RightControl)
+local tab = win:Tab("Main", "http://www.roblox.com/asset/?id=6023426915")
+tab:Button("Credit: Thziin YT#2105", "Thziin YT#2105", function()
+Flux:Notification("Make By Thziin  YT", "Done")
+end)
+tab:Label("Discord Server :  ")
+tab:Button("Nao tenho Discord", "Nao tenho Discord", function()
+setclipboard("Nao Tenho Discord")
+end)
+local AutoFarm = win:Tab("AutoFarm", "http://www.roblox.com/asset/?id=6022668888")
+AutoFarm:Toggle("Auto Gems", "",false, function(State)
+_G.autoyen = State
+while _G.autoyen do wait()
+    for i,v in pairs(game:GetService("Workspace").Gems:GetDescendants()) do
+        if v.Name == "TouchInterest" then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
+wait(.1)
+        end
+        end
+end
+end)
+AutoFarm:Toggle("Auto EasterEggs", "",false, function(State)
+_G.autoyen = State
+while _G.autoyen do wait()
+    for i,v in pairs(game:GetService("Workspace").TEggs:GetDescendants()) do
+        if v.Name == "TouchInterest" then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
+wait(.1)
+        end
+        end
+end
+end)
+local Auto = win:Tab("Teleport Player", "http://www.roblox.com/asset/?id=6022668888")
+players = {}
+
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+     table.insert(players,v.Name)
+end
+
+Auto:Dropdown("Select Player", players, function(String)
+    Select1 = String
+end)
+Auto:Button("Teleport","", function()
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Select1].Character.HumanoidRootPart.CFrame
+end)
+local tab2 = win:Tab("Misc", "http://www.roblox.com/asset/?id=6022668888")
+tab2:Button("Destroy GUI","",function()
+    game.CoreGui.FluxLib:Destroy()
+end)
+tab2:Slider("Walkspeed", "",0,500,16,function(t)
+    _G.Speed = t
+end)
+tab2:Toggle("Start Walk", "",false, function(t)
+        fast = t
+        while fast do task.wait()
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.Speed
+end
+end)
+tab2:Toggle("Anti Afk","",function(vu)
+    local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+           vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+           wait(1)
+           vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+       end)
